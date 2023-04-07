@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Api_Oxigeno.Config;
 using Api_Oxigeno.Servicios;
+using Api_Oxigeno.Repositorios;
+using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,9 @@ builder.Services.AddDbContext<MysqlContext>(option =>
 });
 
 builder.Services.AddScoped<PacienteService>();
+builder.Services.AddScoped<PacienteRepositorio>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

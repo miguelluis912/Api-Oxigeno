@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Api_Oxigeno.DTO.PrescripcionDTO;
 
 namespace Api_Oxigeno.Models
 {
@@ -26,5 +27,10 @@ namespace Api_Oxigeno.Models
         public int Status { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+
+        // public virtual InscripcionOxigeno? InscripcionOxigeno { get; set; } = null!;
+        // public virtual InscripcionOxigeno? InscripcionOxigeno { get; set; } = null!;
+        public InscripcionOxigeno? InscripcionOxigeno { get; set; } = null!;
+
     }
 }

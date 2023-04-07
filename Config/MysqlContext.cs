@@ -19,14 +19,8 @@ namespace Api_Oxigeno.Config
 
         public virtual DbSet<Paciente> Pacientes { get; set; } = null!;
 
-//         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//         {
-//             if (!optionsBuilder.IsConfigured)
-//             {
-// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                 optionsBuilder.UseMySql("server=localhost;database=db_oxigeno;uid=luis;pwd=luis", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
-//             }
-//         }
+        public virtual DbSet<InscripcionOxigeno> InscripcionOxigenos { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -118,7 +112,62 @@ namespace Api_Oxigeno.Config
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("timestamp")
                     .HasColumnName("updated_at");
+
+                entity.HasOne(e => e.InscripcionOxigeno)
+                    .WithOne(p => p.Paciente)
+                    .HasForeignKey<InscripcionOxigeno>(p => p.IdPaciente)
+                    .HasPrincipalKey<Paciente>(p => p.Id)
+                    .HasConstraintName("FK_datos_medico");
+
             });
+
+            modelBuilder.Entity<InscripcionOxigeno>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+                entity
+                    .ToTable("inscripcion_oxigeno")
+                    .UseCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Bipap).HasColumnName("bipap");
+                entity.Property(e => e.Concentrador).HasColumnName("concentrador");
+                entity.Property(e => e.Cpap).HasColumnName("cpap");
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("created_at");
+                entity.Property(e => e.FechaRegistro).HasColumnName("fechaRegistro");
+                entity.Property(e => e.HoraRegistro)
+                    .HasColumnType("time")
+                    .HasColumnName("horaRegistro");
+                entity.Property(e => e.IdMedico).HasColumnName("id_medico");
+                entity.Property(e => e.IdPaciente).HasColumnName("id_paciente");
+                entity.Property(e => e.IdPrescripcionPaciente).HasColumnName("id_prescripcion_paciente");
+                entity.Property(e => e.IdStatusInscripcion).HasColumnName("id_status_inscripcion");
+                entity.Property(e => e.IdTipomedico).HasColumnName("id_tipomedico");
+                entity.Property(e => e.IdUnidad).HasColumnName("id_unidad");
+                entity.Property(e => e.IdUnidadPaciente)
+                    .HasMaxLength(191)
+                    .HasColumnName("id_unidad_paciente");
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
+                entity.Property(e => e.LitrosMinuto).HasColumnName("litros_minuto");
+                entity.Property(e => e.MesUsoOxigeno).HasColumnName("mes_uso_oxigeno");
+                entity.Property(e => e.Oxigeno).HasColumnName("oxigeno");
+                entity.Property(e => e.OxigenoFijo).HasColumnName("oxigeno_fijo");
+                entity.Property(e => e.OxigenoPortatil).HasColumnName("oxigeno_portatil");
+                entity.Property(e => e.Periodicidad).HasColumnName("periodicidad");
+                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.StatusFechaValidacion)
+                    .HasDefaultValueSql("'1'")
+                    .HasComment("Este campo es para validar la entrega del servicio por primera vez")
+                    .HasColumnName("status_fecha_validacion");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("updated_at");
+                entity.Property(e => e.VentilacionMecanicainvasiva).HasColumnName("ventilacion_mecanicainvasiva");
+                entity.Property(e => e.VentilacionMecanicanoinvasiva).HasColumnName("ventilacion_mecanicanoinvasiva");
+            });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -32,3 +32,5 @@ C:\laragon\www\NET-APLICACIONES\Api-Oxigeno\obj\Debug\net6.0\refint\Api-Oxigeno.
 C:\laragon\www\NET-APLICACIONES\Api-Oxigeno\obj\Debug\net6.0\Api-Oxigeno.pdb
 C:\laragon\www\NET-APLICACIONES\Api-Oxigeno\obj\Debug\net6.0\Api-Oxigeno.genruntimeconfig.cache
 C:\laragon\www\NET-APLICACIONES\Api-Oxigeno\obj\Debug\net6.0\ref\Api-Oxigeno.dll
+C:\laragon\www\NET-APLICACIONES\Api-Oxigeno\bin\Debug\net6.0\AutoMapper.dll
+C:\laragon\www\NET-APLICACIONES\Api-Oxigeno\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

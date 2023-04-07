@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "6BePv6A1FSubtBaolh27EUQRV2f5s03BhGENgIkdHQfphrPse/1cRe8Q8nKy0lLhBsdz9v/Hlqky+YHqPgChIA==",
+  "dgSpecHash": "IMJC6iye1Qvc8iLM25NojYJvQhgGc1BRVh/xNg79PooUT9w8QhV6iuCwmC4hQetv2fcNoDdhk6/4LAAZIU2XIQ==",
   "success": true,
   "projectFilePath": "C:\\laragon\\www\\NET-APLICACIONES\\Api-Oxigeno\\Api-Oxigeno.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\LUIS MORA\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\LUIS MORA\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\LUIS MORA\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\LUIS MORA\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\LUIS MORA\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
     "C:\\Users\\LUIS MORA\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.0\\microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\LUIS MORA\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.0\\microsoft.entityframeworkcore.analyzers.6.0.0.nupkg.sha512",
