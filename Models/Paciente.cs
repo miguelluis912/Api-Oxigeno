@@ -27,10 +27,7 @@ namespace Api_Oxigeno.Models
         public int Status { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-
-        // public virtual InscripcionOxigeno? InscripcionOxigeno { get; set; } = null!;
-        // public virtual InscripcionOxigeno? InscripcionOxigeno { get; set; } = null!;
-        public InscripcionOxigeno? InscripcionOxigeno { get; set; } = null!;
+        public List<InscripcionOxigeno>? Inscripcionoxigeno { get; set; } = null!;
 
     }
 }

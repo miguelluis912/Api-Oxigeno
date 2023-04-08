@@ -113,11 +113,11 @@ namespace Api_Oxigeno.Config
                     .HasColumnType("timestamp")
                     .HasColumnName("updated_at");
 
-                entity.HasOne(e => e.InscripcionOxigeno)
-                    .WithOne(p => p.Paciente)
-                    .HasForeignKey<InscripcionOxigeno>(p => p.IdPaciente)
-                    .HasPrincipalKey<Paciente>(p => p.Id)
-                    .HasConstraintName("FK_datos_medico");
+                // entity.HasOne(e => e.InscripcionOxigeno)
+                //     .WithOne(p => p.Paciente)
+                //     .HasForeignKey<InscripcionOxigeno>(p => p.IdPaciente)
+                //     .HasPrincipalKey<Paciente>(p => p.Id)
+                //     .HasConstraintName("FK_datos_medico");
 
             });
 
@@ -133,15 +133,8 @@ namespace Api_Oxigeno.Config
                 entity.Property(e => e.Bipap).HasColumnName("bipap");
                 entity.Property(e => e.Concentrador).HasColumnName("concentrador");
                 entity.Property(e => e.Cpap).HasColumnName("cpap");
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnType("timestamp")
-                    .HasColumnName("created_at");
-                entity.Property(e => e.FechaRegistro).HasColumnName("fechaRegistro");
-                entity.Property(e => e.HoraRegistro)
-                    .HasColumnType("time")
-                    .HasColumnName("horaRegistro");
                 entity.Property(e => e.IdMedico).HasColumnName("id_medico");
-                entity.Property(e => e.IdPaciente).HasColumnName("id_paciente");
+                entity.Property(e => e.PacienteId).HasColumnName("id_paciente");
                 entity.Property(e => e.IdPrescripcionPaciente).HasColumnName("id_prescripcion_paciente");
                 entity.Property(e => e.IdStatusInscripcion).HasColumnName("id_status_inscripcion");
                 entity.Property(e => e.IdTipomedico).HasColumnName("id_tipomedico");
@@ -161,9 +154,6 @@ namespace Api_Oxigeno.Config
                     .HasDefaultValueSql("'1'")
                     .HasComment("Este campo es para validar la entrega del servicio por primera vez")
                     .HasColumnName("status_fecha_validacion");
-                entity.Property(e => e.UpdatedAt)
-                    .HasColumnType("timestamp")
-                    .HasColumnName("updated_at");
                 entity.Property(e => e.VentilacionMecanicainvasiva).HasColumnName("ventilacion_mecanicainvasiva");
                 entity.Property(e => e.VentilacionMecanicanoinvasiva).HasColumnName("ventilacion_mecanicanoinvasiva");
             });

@@ -1,9 +1,10 @@
 using Api_Oxigeno.Config;
 using Api_Oxigeno.Models;
 using Microsoft.EntityFrameworkCore;
-using Api_Oxigeno.DTO.PacienteDTO;
+using Api_Oxigeno.DTO;
 using Api_Oxigeno.DTO.PrescripcionDTO;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Api_Oxigeno.Repositorios
 {
@@ -21,30 +22,27 @@ namespace Api_Oxigeno.Repositorios
         }
 
 
-        public async Task<PacientePrescripcionDTO> getPacientePrescripcion(ulong id_paciente)
+        public async Task<ResponsePaciente> getPacientePrescripcion(ulong id_paciente)
         {
-            Paciente? paciente = await _context.Pacientes
-                                        .Include(p => p.InscripcionOxigeno)
-                                        .Where(p => p.Id == id_paciente)
-                                        .Where(p => p.InscripcionOxigeno.Status == 1)
-                                        .FirstOrDefaultAsync();
+            var paciente = await _context.Pacientes
+                .Include(p => p.Inscripcionoxigeno)
+                .Where(query => query.Id == id_paciente)
+                .FirstOrDefaultAsync();
 
-            PacientePrescripcionDTO dtoPacPres = new PacientePrescripcionDTO();
-
-            if(paciente is not null)
+            ResponsePaciente dtoPacPres = new ResponsePaciente();
+            if (paciente == null)
             {
+                dtoPacPres.response_status = 404;
+                dtoPacPres.Mensaje = "DATOS NO ENCONTRADOS";
+                // return NotFound();
+            }else{
+                dtoPacPres.response_status = 200;
+                dtoPacPres.Mensaje = "Informacion general";
                 dtoPacPres.id = paciente.Id;
                 dtoPacPres.nombres = paciente.Nombre;
                 dtoPacPres.apellido_materno = paciente.ApellidoMaterno;
                 dtoPacPres.apellido_paterno = paciente.ApellidoPaterno;
-                dtoPacPres.curp = paciente.Curp;
-                dtoPacPres.correo = paciente.Correo;
-                dtoPacPres.prescripcion = _mapper.Map<DatosPrescripcionDTO>(paciente);
-            }
-            else
-            {
-                dtoPacPres.response_status = 404;
-                dtoPacPres.Mensaje = "DATOS NO ENCONTRADOS";
+                dtoPacPres.datosPrescripcion = _mapper.Map<List<DatosPrescripcion>>(paciente.Inscripcionoxigeno);
             }
             return dtoPacPres;
         }

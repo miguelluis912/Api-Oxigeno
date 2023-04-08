@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Api_Oxigeno.Models
 {
     public class InscripcionOxigeno
@@ -6,7 +8,6 @@ namespace Api_Oxigeno.Models
 
         public int IdUser { get; set; }
 
-        public ulong IdPaciente { get; set; }
 
         public int IdTipomedico { get; set; }
 
@@ -42,9 +43,6 @@ namespace Api_Oxigeno.Models
 
         public int MesUsoOxigeno { get; set; }
 
-        public DateOnly FechaRegistro { get; set; }
-
-        public TimeOnly HoraRegistro { get; set; }
 
         public int Status { get; set; }
 
@@ -53,9 +51,8 @@ namespace Api_Oxigeno.Models
         /// </summary>
         public int? StatusFechaValidacion { get; set; }
 
-        public DateTime? CreatedAt { get; set; }
-
-        public DateTime? UpdatedAt { get; set; }
+        [ForeignKey("PacienteId")]
+        public ulong PacienteId { get; set; }
 
         public virtual Paciente Paciente { get; set; } = null!;
     }

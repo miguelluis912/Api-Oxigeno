@@ -1,0 +1,8 @@
+.vscode
+[Oo]bj
+[Bb]in
+.vs
+
+appsettings.*.json
+appsettings.json
+* /obj

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api_Oxigeno.DTO.PacienteDTO;
+using Api_Oxigeno.DTO;
 using Api_Oxigeno.DTO.PrescripcionDTO;
 using Api_Oxigeno.Models;
 
@@ -22,11 +23,11 @@ namespace Api_Oxigeno.Config.MapperProfiles
             .ForMember(o => o.correo, dtopaciente => dtopaciente.MapFrom(e => e.Correo))
             .ForMember(o => o.telefono, dtopaciente => dtopaciente.MapFrom(e => e.Telefono));
 
-            CreateMap<Paciente, DatosPrescripcionDTO>()
-            .ForMember(w => w.id, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.Id))
-            .ForMember(w => w.id_suario, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.IdUser))
-            .ForMember(w => w.id_prescripcion_paciente, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.IdPrescripcionPaciente))
-            .ForMember(w => w.id_paciente, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.IdPaciente));
+            CreateMap<InscripcionOxigeno, DatosPrescripcion>();
+            // .ForMember(w => w.id, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.Id))
+            // .ForMember(w => w.id_suario, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.IdUser))
+            // .ForMember(w => w.id_prescripcion_paciente, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.IdPrescripcionPaciente))
+            // .ForMember(w => w.id_paciente, dtopaciente => dtopaciente.MapFrom(r => r.InscripcionOxigeno.IdPaciente));
         }
 
 

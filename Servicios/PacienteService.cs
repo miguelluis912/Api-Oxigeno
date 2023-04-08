@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Api_Oxigeno.Config;
 using Api_Oxigeno.Models;
 using Api_Oxigeno.DTO.PacienteDTO;
-using Api_Oxigeno.Servicios;
+using Api_Oxigeno.DTO;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Api_Oxigeno.Repositorios;
@@ -31,10 +31,17 @@ namespace Api_Oxigeno.Servicios
             return _mapper.Map<getPacienteDTO>(paciente);
         }
 
-        public async Task<PacientePrescripcionDTO> getByIdPacientePrescripcion(ulong id)
+        public async Task<ResponsePaciente>  getByIdPacientePrescripcion(ulong id)
         {
-            var paciente_pres = await _repositorio.getPacientePrescripcion(id);
+             var paciente_pres = await _repositorio.getPacientePrescripcion(id);
 
+            return paciente_pres;
+        }
+
+
+        public async Task<Paciente> existPaciente(ulong paciente_id)
+        {
+            var paciente_pres = await _context.Pacientes.Where(query => query.Id == paciente_id).FirstOrDefaultAsync();
             return paciente_pres;
         }
     }
