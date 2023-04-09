@@ -21,6 +21,11 @@ namespace Api_Oxigeno.Config
 
         public virtual DbSet<InscripcionOxigeno> InscripcionOxigenos { get; set; }
 
+        public virtual DbSet<OrdenTrabajo> OrdenTrabajo { get; set; }
+        public virtual DbSet<Direccion> Direcciones { get; set; }
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -158,6 +163,93 @@ namespace Api_Oxigeno.Config
                 entity.Property(e => e.VentilacionMecanicanoinvasiva).HasColumnName("ventilacion_mecanicanoinvasiva");
             });
 
+            modelBuilder.Entity<OrdenTrabajo>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+                entity
+                    .ToTable("orden_trabajo")
+                    .UseCollation("utf8mb4_unicode_ci");
+
+                entity.HasIndex(e => e.InscripcionOxigenoId, "id_adscripcion");
+
+                entity.HasIndex(e => e.IdUser, "id_user");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("created_at");
+                entity.Property(e => e.FechaBajaConsumo)
+                    .HasComment("Este campo es cuando se da de baja la orden por algun motivo")
+                    .HasColumnName("fecha_baja_consumo");
+                entity.Property(e => e.FechaEntregaOxigeno).HasColumnName("fecha_entrega_oxigeno");
+                entity.Property(e => e.FechaRegistro).HasColumnName("fechaRegistro");
+                entity.Property(e => e.FechaValidacionConsumo)
+                    .HasComment("Este campo es cuando se valida la orden")
+                    .HasColumnName("fecha_validacion_consumo");
+                entity.Property(e => e.FechasValidacion).HasColumnName("fechas_validacion");
+                entity.Property(e => e.InscripcionOxigenoId).HasColumnName("id_adscripcion");
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
+                entity.Property(e => e.MesCorriente)
+                    .HasMaxLength(191)
+                    .HasColumnName("mes_corriente");
+                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("updated_at");
+            });
+
+
+            modelBuilder.Entity<Direccion>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+                entity
+                    .ToTable("direcciones")
+                    .UseCollation("utf8mb4_unicode_ci");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Calle)
+                    .HasMaxLength(191)
+                    .HasDefaultValueSql("'SIN DATO'")
+                    .HasColumnName("calle");
+                entity.Property(e => e.CodigoPostal)
+                    .HasMaxLength(191)
+                    .HasDefaultValueSql("'0'")
+                    .HasColumnName("codigo_postal");
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("created_at");
+                entity.Property(e => e.Direccion_completa)
+                    .HasMaxLength(191)
+                    .HasColumnName("direccion");
+                entity.Property(e => e.FechaRegistro).HasColumnName("fechaRegistro");
+                entity.Property(e => e.HoraRegistro)
+                    .HasColumnType("time")
+                    .HasColumnName("horaRegistro");
+                entity.Property(e => e.IdAsentamiento).HasColumnName("id_asentamiento");
+                entity.Property(e => e.IdEntidad).HasColumnName("id_entidad");
+                entity.Property(e => e.IdMunicipio).HasColumnName("id_municipio");
+                entity.Property(e => e.PacienteId).HasColumnName("id_paciente");
+                entity.Property(e => e.IdTipoDireccion).HasColumnName("id_tipo_direccion");
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
+                entity.Property(e => e.NumExterior)
+                    .HasMaxLength(191)
+                    .HasDefaultValueSql("'0'")
+                    .HasColumnName("num_exterior");
+                entity.Property(e => e.NumInterior)
+                    .HasMaxLength(191)
+                    .HasDefaultValueSql("'0'")
+                    .HasColumnName("num_interior");
+                entity.Property(e => e.Referencia)
+                    .HasMaxLength(191)
+                    .HasDefaultValueSql("'sin referencia'")
+                    .HasColumnName("referencia");
+                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("updated_at");
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -8,7 +8,6 @@ namespace Api_Oxigeno.Models
 
         public int IdUser { get; set; }
 
-
         public int IdTipomedico { get; set; }
 
         public int IdUnidad { get; set; }
@@ -54,6 +53,8 @@ namespace Api_Oxigeno.Models
         [ForeignKey("PacienteId")]
         public ulong PacienteId { get; set; }
 
-        public virtual Paciente Paciente { get; set; } = null!;
+        public virtual Paciente paciente { get; set; } = null!;
+
+        public virtual List<OrdenTrabajo> OrdenTrabajo { get; set; } = null!;
     }
 }

@@ -1,4 +1,5 @@
-using Api_Oxigeno.DTO.PrescripcionDTO;
+using Api_Oxigeno.DTO.DatosModelos;
+
 namespace Api_Oxigeno.DTO.PacienteDTO
 {
     public class PacientePrescripcionDTO

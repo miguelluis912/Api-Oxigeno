@@ -3,6 +3,8 @@ using Api_Oxigeno.Config;
 using Api_Oxigeno.Servicios;
 using Api_Oxigeno.Repositorios;
 using System.Text.Json.Serialization;
+using Api_Oxigeno.helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +18,12 @@ builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
 );
 
+builder.Services.AddControllers()
+      .AddJsonOptions(options =>
+      {
+          options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+      });
+
 builder.Services.AddDbContext<MysqlContext>(option =>
 {
     String str_conn = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -23,7 +31,9 @@ builder.Services.AddDbContext<MysqlContext>(option =>
 });
 
 builder.Services.AddScoped<PacienteService>();
+builder.Services.AddScoped<PrescripcionService>();
 builder.Services.AddScoped<PacienteRepositorio>();
+builder.Services.AddScoped<PrescripcionRepositorio>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

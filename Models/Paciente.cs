@@ -29,5 +29,7 @@ namespace Api_Oxigeno.Models
         public DateTime? UpdatedAt { get; set; }
         public List<InscripcionOxigeno>? Inscripcionoxigeno { get; set; } = null!;
 
+        public Direccion direccion { get; set; }
+
     }
 }
